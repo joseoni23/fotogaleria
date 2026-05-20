@@ -1,0 +1,63 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Carpeta donde se guardan las imágenes subidas
+media_folder: "images"
+public_folder: "/images"
+
+# Slug para nombres de archivo sin espacios
+slug:
+  encoding: "ascii"
+  clean_accents: true
+
+collections:
+  - name: "gallery"
+    label: "Galería de Fotos"
+    files:
+      - label: "Fotos"
+        name: "photos"
+        file: "content/photos.json"
+        fields:
+          - label: "Fotos"
+            name: "photos"
+            widget: "list"
+            label_singular: "Foto"
+            summary: "{{fields.title}} — {{fields.category}}"
+            fields:
+              - label: "Título"
+                name: "title"
+                widget: "string"
+                hint: "Nombre de la fotografía"
+
+              - label: "Descripción"
+                name: "description"
+                widget: "text"
+                required: false
+                hint: "Descripción opcional de la foto"
+
+              - label: "Categoría"
+                name: "category"
+                widget: "select"
+                options:
+                  - { label: "Retratos",   value: "Retratos"  }
+                  - { label: "Paisajes",   value: "Paisajes"  }
+                  - { label: "Bodas",      value: "Bodas"     }
+                  - { label: "Comercial",  value: "Comercial" }
+                  - { label: "Otros",      value: "Otros"     }
+                default: "Retratos"
+
+              - label: "Imagen"
+                name: "image"
+                widget: "image"
+                hint: "Sube la foto (JPG o PNG, máx. recomendado 2MB)"
+                media_library:
+                  config:
+                    multiple: false
+
+              - label: "Fecha"
+                name: "date"
+                widget: "datetime"
+                date_format: "YYYY-MM-DD"
+                time_format: false
+                default: ""
