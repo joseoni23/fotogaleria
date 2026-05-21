@@ -495,11 +495,10 @@
   });
 
   // ── Loader
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      document.getElementById('loader').classList.add('hidden');
-    }, 1600);
-  });
+// Loader desaparece siempre, sin importar qué
+setTimeout(() => {
+  document.getElementById('loader').classList.add('hidden');
+}, 1800);
 
   // ── Data & Gallery
   let allPhotos = [];
@@ -508,7 +507,7 @@
 
   async function loadGallery() {
     try {
-      const res = await fetch('/content/photos.json');
+      const res = await fetch('/content/photos.json?v=' + Date.now());
       if (!res.ok) throw new Error('no data');
       const data = await res.json();
       allPhotos = data.photos || [];
