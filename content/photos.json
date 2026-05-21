@@ -1,3 +1,11 @@
 {
-  "photos": []
+  "photos": [
+    {
+      "category": "Otros",
+      "date": "2026-05-21",
+      "title": "Test 1",
+      "description": "location ",
+      "image": "/images/quintafoto2.webp"
+    }
+  ]
 }
